@@ -8,6 +8,8 @@ public class App {
 		System.out.println("Hello World!");
 		// comments by lewisl
 		System.out.println("Hello Lewisl!");
+		
+		System.out.println("The font size...");
 	}
 
 }
