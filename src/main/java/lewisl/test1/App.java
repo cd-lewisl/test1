@@ -5,6 +5,9 @@ package lewisl.test1;
  */
 public class App {
 	public static void main(String[] args) {
+		
+		System.out.println("add");
+		
 		System.out.println("Hello World! AAA");
 		// comments by lewisl
 		System.out.println("Hello Lewisl!");
