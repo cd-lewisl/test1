@@ -6,7 +6,7 @@ package lewisl.test1;
 public class App {
 	public static void main(String[] args) {
 		
-		System.out.println("add aa");
+		System.out.println("add aa bb");
 		
 		System.out.println("Hello World! AAA");
 		// comments by lewisl
