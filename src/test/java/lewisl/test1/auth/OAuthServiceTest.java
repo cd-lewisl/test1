@@ -19,8 +19,11 @@ public class OAuthServiceTest {
 	private static final Logger logger = LoggerFactory
 			.getLogger(OAuthServiceTest.class);
 	private static final String PROTECTED_ORIGIN = "https://marketplace.firefox.com";
+//	private static final String PROTECTED_RESOURCE_URL = PROTECTED_ORIGIN
+//			+ "/api/v1/account/settings/mine/";	
+//	private static final String PROTECTED_RESOURCE_URL = "https://marketplace.firefox.com/api/v1/payments/upsell/1/";
 	private static final String PROTECTED_RESOURCE_URL = PROTECTED_ORIGIN
-			+ "/api/v1/account/settings/mine/";
+	+ "/api/v1/account/permissions/mine/";
 
 	public static void main(String[] args) throws IOException {
 		// Step1:Generate the request Token
@@ -72,3 +75,19 @@ public class OAuthServiceTest {
 //2014-07-30 09:33:15,565 - lewisl.test1.auth.OAuthServiceTest -35766 [main] INFO   - The Verified Code is :ffe8962cb4cc5ce077eac7a72a1a9a0b95b40de594764007c85e52817188845502ecb2a983264eeeb6320fe5b8ec0e4666d99e73f3bd99d1fe7abb2a24c7093b
 //2014-07-30 09:33:16,539 - lewisl.test1.auth.OAuthServiceTest -36740 [main] INFO   - Access Token is : ccb3dd229318cd198e0448a9637514469caf1fe9a5d026c649a89cee8ec3d29ca0f5b802d7909d28ceb668ea3832c9946bf304b647ee750bb5d64893f7724b31
 //{"display_name":"yi_liu"}
+
+
+//
+//{
+//    "permissions": {
+//        "localizer": false,
+//        "stats": false,
+//        "lookup": false,
+//        "webpay": false,
+//        "revenue_stats": false,
+//        "admin": false,
+//        "reviewer": false,
+//        "curator": false,
+//        "developer": true
+//    }
+//}

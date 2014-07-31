@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import lewisl.test1.ffvo.SendTaskResponse;
 import lewisl.test1.ffvo.Upload;
 import lewisl.test1.ffvo.ValRequest;
 
@@ -18,6 +19,8 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
 import sun.misc.BASE64Encoder;
 
@@ -32,7 +35,9 @@ import com.alibaba.fastjson.JSONObject;
  */
 public class TestSendValidationRequest {
 
-	public static void main(String[] args) throws IOException {
+	@DataProvider(name = "validationIDProvider", parallel = false)
+	@Test()
+	public static Object[][] sendValidateionReq() throws IOException {
 		File file = new File("test.zip");
 		InputStream is = new FileInputStream(file);
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
@@ -40,15 +45,23 @@ public class TestSendValidationRequest {
 		is.close();
 		String result = new BASE64Encoder().encode(os.toByteArray());
 		// System.out.println(result);
-		sendTask(result);
-
+		String validationId = sendTask(result);
+		return new Object[][] { { validationId } };
 	}
 
-	private static void sendTask(String base64Str)
+	/**
+	 * Return the validation Id;
+	 * 
+	 * @param base64Str
+	 * @return
+	 * @throws ClientProtocolException
+	 * @throws IOException
+	 */
+	private static String sendTask(String base64Str)
 			throws ClientProtocolException, IOException {
 		HttpClient client = new DefaultHttpClient();
 
-		String uri = "https://marketplace.firefox.com/api/v1/apps/validation/";
+		String uri = FetchValidationResult.origin + "/api/v1/apps/validation/";
 		HttpPost postMethod = new HttpPost(uri);
 
 		BasicHeader contentType = new BasicHeader("content-type",
@@ -72,9 +85,14 @@ public class TestSendValidationRequest {
 
 		ByteArrayOutputStream respOs = new ByteArrayOutputStream();
 		response.getEntity().writeTo(respOs);
-
 		System.out.println(respOs.toString());
 
+		// JSONSerializerMap map = new JSONSerializerMap();
+		// map.put(SendTaskResponse.class, new JavaBeanDeserializer(
+		// SendTaskResponse.class, Collections.singletonMap("", "")));
+
+		SendTaskResponse resp = (SendTaskResponse) JSON.parseObject(
+				respOs.toString(), SendTaskResponse.class);
 		/**
 		 * You can't get the validated result immediately as for non-hosted app,
 		 * The remote server side just enqueued this task, If this task be
@@ -84,5 +102,7 @@ public class TestSendValidationRequest {
 		// {"id":"b77d8d1f90ad4e0a8d263f9075633179","processed":false,"valid":false,"validation":null}
 
 		client.getConnectionManager().shutdown();
+
+		return resp.getId();
 	}
 }
