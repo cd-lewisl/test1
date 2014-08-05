@@ -45,6 +45,7 @@ public class FetchValidationResult {
 
 		System.out.println(os.toString());
 
+		getMethod.abort();
 		client.getConnectionManager().shutdown();
 	}
 
