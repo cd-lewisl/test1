@@ -17,7 +17,7 @@ public class FetchValidationResult {
 
 	@DataProvider(name = "offerValId")
 	public Object[][] dataProvider() {
-		return new Object[][] { { "406f8b21360c41808c1b69df53da8f72" } };
+		return new Object[][] { { "b2e6e2a721364f03a0ae15d11ace71b4" } };
 	}
 
 	// public static final String origin="https://marketplace.firefox.com";
