@@ -13,11 +13,11 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class FetchValidationResult {
-	public static final String origin = "https://marketplace-dev.allizom.org";
+	public static final String origin = "https://marketplace.allizom.org";
 
 	@DataProvider(name = "offerValId")
 	public Object[][] dataProvider() {
-		return new Object[][] { { "b2e6e2a721364f03a0ae15d11ace71b4" } };
+		return new Object[][] { { "f5dff16d3d244a378ede6667d21bab96" } };
 	}
 
 	// public static final String origin="https://marketplace.firefox.com";
