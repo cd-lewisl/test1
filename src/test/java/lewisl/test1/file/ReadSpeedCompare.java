@@ -66,10 +66,22 @@ public class ReadSpeedCompare {
     public static void main(String[] args) throws IOException {
         preparedData();
         // sequential read
-        for (int i = 0; i < 1; i++)
-            testSequenceFile();
+        // new Thread() {
+        // @Override
+        // public void run() {
+        // for (int i = 0; i < 10000000; i++) {
+        // try {
+        testSequenceFile();
+        // } catch (IOException e) {
+        // e.printStackTrace();
+        // }
+        // }
+        // super.run();
+        // }
+        // }.start();
         System.out.println("############################");
         // random read
+
         testRandomFile();
     }
 
