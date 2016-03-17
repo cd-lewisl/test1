@@ -12,7 +12,7 @@ public class ConsumerDemo {
     public static void main(String[] args) {
         Properties props = new Properties();
         props.put("bootstrap.servers", "localhost:9092");// partition 0
-        props.put("group.id", "test");
+        props.put("group.id", "test5");
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
         props.put("session.timeout.ms", "30000");
