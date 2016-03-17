@@ -10,7 +10,7 @@ public class ProducerDemo {
 
     public static void main(String[] args) {
         Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:9092");
+        props.put("bootstrap.servers", "localhost:9092,localhost:9093");// partition 0
         props.put("acks", "all");
         props.put("retries", 0);
         props.put("batch.size", 16384);
@@ -20,10 +20,13 @@ public class ProducerDemo {
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
         Producer<String, String> producer = new KafkaProducer<String, String>(props);
-        for (int i = 10; i < 120; i++)
-            producer.send(new ProducerRecord<String, String>("test-1",1,  Integer.toString(i),
-                    Integer.toString(i)));
+        // for (int i = 10; i < 120; i++)
+        // producer.send(new ProducerRecord<String, String>("test-1", 1, Integer.toString(i),
+        // Integer
+        // .toString(i)));
 
+        producer.send(new ProducerRecord<String, String>("test-1", 1, "key1", "v1&&&&&&&&&&&"));
+        producer.send(new ProducerRecord<String, String>("test-1", 1, "key2", "v2============="));
         producer.close();
     }
 }

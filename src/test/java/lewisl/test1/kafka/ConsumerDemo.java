@@ -11,7 +11,7 @@ public class ConsumerDemo {
 
     public static void main(String[] args) {
         Properties props = new Properties();
-        props.put("bootstrap.servers", "localhost:9092");// partition 0
+        props.put("bootstrap.servers", "localhost:9092,localhost:9093");// partition 0
         props.put("group.id", "test5");
         props.put("enable.auto.commit", "true");
         props.put("auto.commit.interval.ms", "1000");
@@ -22,9 +22,14 @@ public class ConsumerDemo {
         consumer.subscribe(Arrays.asList("test-1"));
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(100);
-            for (ConsumerRecord<String, String> record : records)
+            for (ConsumerRecord<String, String> record : records) {
                 System.out.printf("offset = %d, key = %s, value = %s", record.offset(),
                         record.key(), record.value());
+            }
+            if (!records.isEmpty()) {
+                System.out.println("");
+            }
+
         }
     }
 }
